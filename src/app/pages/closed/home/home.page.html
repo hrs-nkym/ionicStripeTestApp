@@ -3,34 +3,22 @@
     <ion-title>
       Blank
     </ion-title>
-
-    <!-- ここから追加 -->
     <ion-buttons slot="end">
       <ion-button slot="icon-only" (click)="onSignOutButtonClicked()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <!-- ここまで追加 -->
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-chip outline color="secondary" (click)="httpCall()">
+    <ion-label>API Gateway Http Call</ion-label>
+  </ion-chip>
+  <ion-chip outline color="secondary" (click)="stripePaymentIntent()">
+    <ion-label>購入 PaymentIntent</ion-label>
+  </ion-chip>
+  <ion-chip outline color="secondary" (click)="stripePaymentRedirect()">
+    <ion-label>購入 Redirect</ion-label>
+  </ion-chip>
 </ion-content>
-
-<!-- <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content> -->

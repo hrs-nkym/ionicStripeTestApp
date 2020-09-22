@@ -11,10 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from "./shared/shared.module";
 
+import { HttpClientModule } from "@angular/common/http";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, SharedModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, SharedModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
