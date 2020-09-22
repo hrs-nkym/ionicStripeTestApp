@@ -10,7 +10,7 @@ const modules = [
   IonicModule,
   CommonModule,
   AmplifyIonicModule,
-]
+];
 
 @NgModule({
   declarations: [],

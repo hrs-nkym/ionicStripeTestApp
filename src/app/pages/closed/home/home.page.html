@@ -12,13 +12,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-chip outline color="secondary" (click)="httpCall()">
-    <ion-label>API Gateway Http Call</ion-label>
-  </ion-chip>
   <ion-chip outline color="secondary" (click)="stripePaymentIntent()">
-    <ion-label>購入 PaymentIntent</ion-label>
+    <ion-label>Stripe PaymentIntent</ion-label>
   </ion-chip>
-  <ion-chip outline color="secondary" (click)="stripePaymentRedirect()">
-    <ion-label>購入 Redirect</ion-label>
+  <ion-chip outline color="secondary" (click)="stripeRedirectToCheckout()">
+    <ion-label>Stripe RedirectToCheckout</ion-label>
   </ion-chip>
 </ion-content>

@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
 // import { Platform } from '@ionic/angular';
 // import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 // import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NavController } from "@ionic/angular";
-import { AmplifyService } from "aws-amplify-angular";
+import { NavController } from '@ionic/angular';
+import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +29,7 @@ export class AppComponent {
   //     this.splashScreen.hide();
   //   });
   // }
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.amplifyService.authStateChange$.subscribe(authState => {
       switch (authState.state) {
@@ -39,6 +40,6 @@ export class AppComponent {
           this.navCtrl.navigateForward(['/auth']);
           break;
       }
-    })
+    });
   }
 }
