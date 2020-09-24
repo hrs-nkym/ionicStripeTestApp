@@ -11,15 +11,13 @@ const routes: Routes = [
   //   redirectTo: 'home',
   //   pathMatch: 'full'
   // },
-    // 直下へのアクセスは /auth へリダイレクト
+  // 直下へのアクセスは /auth へリダイレクト
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  // 未ログイン状態でアクセスできる画面群のルーティング
-  {
+  { // 未ログイン状態でアクセスできる画面群のルーティング
     path: '',
     loadChildren: () => import('./pages/public/public.module').then(m => m.PublicModule)
   },
-  // ログイン状態でアクセスできる画面群のルーティング
-  {
+  { // ログイン状態でアクセスできる画面群のルーティング
     path: '',
     loadChildren: () => import('./pages/closed/closed.module').then(m => m.ClosedModule)
   },

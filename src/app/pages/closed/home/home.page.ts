@@ -12,70 +12,67 @@ import { loadStripe } from '@stripe/stripe-js';
 })
 export class HomePage {
 
+  apiGateway = 'https://0tmjrphch5.execute-api.ap-northeast-1.amazonaws.com/stripeTestApiStage';
+  card = null;
+  httpOptions = null;
+
+  PUBLIC_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
+  DOMAIN = window.location.hostname;
+  PLAN_ID = 'price_1HQSFCAaZtYZzHLQg6xUA0V6';
+
   constructor(
     private amplifyService: AmplifyService,
     private http: HttpClient
   ) {
-
     Auth.currentSession()
       .then((session) => {
         this.setAuthorization(session.getIdToken().payload['cognito:username']);
       }).catch((err) => {
         console.log(err);
       });
+
+    this.httpOptions = {
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', ''),
+      body: {}
+    };
   }
 
-  card = null;
+  async paymentIntent() {
+    this.http.get(this.apiGateway)
+    .subscribe((res) => {
+      console.log(res);
+    });
 
-  apiGateway = 'https://0tmjrphch5.execute-api.ap-northeast-1.amazonaws.com/stripeTestApiStage';
-
-  httpOptions: any = {
-    headers: new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', ''),
-    body: {}
-  };
-
-
-  onSignOutButtonClicked() {
-    this.amplifyService.auth().signOut();
+    // this.http.get(`${this.apiGateway}`, this.httpOptions).toPromise()
+    // .then((res) => {
+    //   console.log(JSON.stringify(res));
+    // }).catch(this.errorHandler);
   }
 
-  stripePaymentIntent() {
-    this.http.get(`${this.apiGateway}`, this.httpOptions).toPromise()
-    .then((res) => {
-      const response: any = res;
-      console.log(response);
-      return response;
-    }).catch(this.errorHandler);
-  }
-
-  async stripeRedirectToCheckout() {
-    const PUBLISHABLE_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
-    const DOMAIN = window.location.hostname;
-    const SUBSCRIPTION_BASIC_PLAN_ID = 'price_1HQSFCAaZtYZzHLQg6xUA0V6';
-
+  async redirectToCheckout() {
     try {
-      const stripe = await loadStripe(PUBLISHABLE_KEY);
+      const stripe = await loadStripe(this.PUBLIC_KEY);
       stripe.redirectToCheckout({
         mode: 'payment',
-        lineItems: [{price: SUBSCRIPTION_BASIC_PLAN_ID, quantity: 1}],
-        successUrl: 'https://' + DOMAIN ,
-        cancelUrl: 'https://' + DOMAIN
+        lineItems: [{price: this.PLAN_ID, quantity: 1}],
+        successUrl: 'https://' + this.DOMAIN ,
+        cancelUrl: 'https://' + this.DOMAIN
       })
-       .then(this.handleResult);
+      .then(this.handleResult);
     } catch (error) {
-      console.error('checkout() try catch error', error);
+      this.errorHandler(error);
     }
   }
 
-  private errorHandler(err) {
-    console.log('Error Occured.', err);
-    return Promise.reject(err.message || err);
+  private handleResult(result) {
+    console.log('Result: -> ', result);
   }
 
-  private handleResult(result) {
-    console.log('handleResult()', result);
+  private errorHandler(err) {
+    console.log('Error: -> ', err);
+    return Promise.reject(err.message || err);
   }
 
   public setAuthorization(token: string = null): void {
@@ -84,5 +81,9 @@ export class HomePage {
     }
     const bearerToken = `Bearer ${token}`;
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', bearerToken);
+  }
+
+  onSignOutButtonClicked() {
+    this.amplifyService.auth().signOut();
   }
 }

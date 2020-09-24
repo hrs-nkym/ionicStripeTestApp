@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Stripe TEST
     </ion-title>
     <ion-buttons slot="end">
       <ion-button slot="icon-only" (click)="onSignOutButtonClicked()">
@@ -12,10 +12,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-chip outline color="secondary" (click)="stripePaymentIntent()">
-    <ion-label>Stripe PaymentIntent</ion-label>
+  <ion-chip outline color="secondary" (click)="paymentIntent()">
+    <ion-label>ペイメント インテント方式</ion-label>
   </ion-chip>
-  <ion-chip outline color="secondary" (click)="stripeRedirectToCheckout()">
-    <ion-label>Stripe RedirectToCheckout</ion-label>
+  <ion-chip outline color="secondary" (click)="redirectToCheckout()">
+    <ion-label>リダイレクト チェックアウト方式</ion-label>
   </ion-chip>
+  <!-- payment component -->
+  <app-payment></app-payment>
 </ion-content>

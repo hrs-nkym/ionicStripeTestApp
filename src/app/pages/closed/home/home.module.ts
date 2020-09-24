@@ -8,15 +8,17 @@ import { HomePage } from './home.page';
 // import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from '@/app/shared/shared.module';
 
+import { PaymentComponent } from '../../../payment/payment.component';
+
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild([{ path: '', component: HomePage}])
+    RouterModule.forChild([{ path: '', component: HomePage}]),
     // CommonModule,
     // FormsModule,
     // IonicModule,
     // HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, PaymentComponent]
 })
 export class HomePageModule {}
