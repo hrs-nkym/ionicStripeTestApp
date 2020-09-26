@@ -8,8 +8,6 @@ import { HomePage } from './home.page';
 // import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from '@/app/shared/shared.module';
 
-import { PaymentComponent } from '../../../payment/payment.component';
-
 @NgModule({
   imports: [
     SharedModule,
@@ -19,6 +17,6 @@ import { PaymentComponent } from '../../../payment/payment.component';
     // IonicModule,
     // HomePageRoutingModule
   ],
-  declarations: [HomePage, PaymentComponent]
+  declarations: [HomePage, ]
 })
 export class HomePageModule {}

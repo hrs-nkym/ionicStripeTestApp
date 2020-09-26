@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
-import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-home',
@@ -40,37 +40,63 @@ export class HomePage {
   }
 
   async paymentIntent() {
-    this.http.get(this.apiGateway)
-    .subscribe(async (res) => {
-      let json = JSON.stringify(res);
-      let _json = JSON.parse(json);
-      let j = JSON.parse(_json.body);
-      let client_secret = j.client_secret;
-      console.log(client_secret);
 
-      let StripeCardElement = '4242424242424242'
-      let stripe = await loadStripe(this.PUBLIC_KEY);
-      let confirmRes = await stripe.confirmCardPayment(client_secret, {
-        // payment_method: {
-          // card: document.getElementById('card'),
-          // card: {a : a},
-          // billing_details: {
-          //   // name: res.data.metadata.username,
-          // }
-        // }
-      });
+    const stripe = await loadStripe(this.PUBLIC_KEY);
+    const elements = stripe.elements({});
+    const cardElement = elements.create('card', {});
 
-      console.log(confirmRes.paymentIntent.status);
-        // if (confirmRes.paymentIntent.status === "succeeded") {
-        //   console.log("決済完了");
-        // }
+    cardElement.mount('#card-element');
 
+    cardElement.on('change', (event) => {
+      const displayError = document.getElementById('card-errors');
+      if (event.error){
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
     });
 
-    // this.http.get(`${this.apiGateway}`, this.httpOptions).toPromise()
-    // .then((res) => {
-    //   console.log(JSON.stringify(res));
-    // }).catch(this.errorHandler);
+    const paymentForm = document.getElementById('payment-form');
+
+    paymentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      stripe.createToken(cardElement).then((result) => {
+        if (result.error) {
+          console.log('Error creating payment method.');
+          const errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          console.log('Token acquired!');
+          console.log(result.token);
+          console.log(result.token.id);
+
+          this.http.post(this.apiGateway, this.httpOptions )
+            .subscribe( async (res) => {
+
+              const response = JSON.stringify(res);
+              const json = JSON.parse(response);
+              const body = JSON.parse(json.body);
+
+              console.log('client_secret: ' + body.client_secret);
+
+              stripe.confirmCardPayment(body.client_secret, {
+                payment_method: {
+                  card: { token: result.token.id },
+                  billing_details: {
+                    name: 'leafhub.'
+                  }
+                }
+              }).then((paymentIntent) => {
+                console.log('paymentIntent: ' + JSON.stringify(paymentIntent));
+              }).catch((error) => {
+                console.log('error: ' + JSON.stringify(error));
+              });
+            });
+        }
+      });
+    });
+
+
   }
 
   async redirectToCheckout() {
