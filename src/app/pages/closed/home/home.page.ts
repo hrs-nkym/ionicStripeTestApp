@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-home',
@@ -41,8 +41,30 @@ export class HomePage {
 
   async paymentIntent() {
     this.http.get(this.apiGateway)
-    .subscribe((res) => {
-      console.log(res);
+    .subscribe(async (res) => {
+      let json = JSON.stringify(res);
+      let _json = JSON.parse(json);
+      let j = JSON.parse(_json.body);
+      let client_secret = j.client_secret;
+      console.log(client_secret);
+
+      let StripeCardElement = '4242424242424242'
+      let stripe = await loadStripe(this.PUBLIC_KEY);
+      let confirmRes = await stripe.confirmCardPayment(client_secret, {
+        // payment_method: {
+          // card: document.getElementById('card'),
+          // card: {a : a},
+          // billing_details: {
+          //   // name: res.data.metadata.username,
+          // }
+        // }
+      });
+
+      console.log(confirmRes.paymentIntent.status);
+        // if (confirmRes.paymentIntent.status === "succeeded") {
+        //   console.log("決済完了");
+        // }
+
     });
 
     // this.http.get(`${this.apiGateway}`, this.httpOptions).toPromise()
