@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "auth": {
+      "ionicstripetestapp7b56a1af": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

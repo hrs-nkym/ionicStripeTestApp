@@ -1,0 +1,737 @@
+{
+  "pluginDirectories": [
+    "cli-local-node-modules",
+    "cli-parent-directory",
+    "global-node-modules"
+  ],
+  "pluginPrefixes": [
+    "amplify-"
+  ],
+  "userAddedLocations": [],
+  "lastScanTime": "2020-09-20T18:46:55.624Z",
+  "maxScanIntervalInSeconds": 86400,
+  "plugins": {
+    "core": [
+      {
+        "packageName": "@aws-amplify/cli",
+        "packageVersion": "4.29.2",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/",
+        "manifest": {
+          "name": "core",
+          "type": "core",
+          "commands": [
+            "categories",
+            "configure",
+            "console",
+            "delete",
+            "env",
+            "help",
+            "init",
+            "migrate",
+            "publish",
+            "push",
+            "pull",
+            "run",
+            "status",
+            "plugin",
+            "version"
+          ],
+          "commandAliases": {
+            "h": "help",
+            "serve": "run",
+            "ls": "status"
+          }
+        }
+      }
+    ],
+    "analytics": [
+      {
+        "packageName": "amplify-category-analytics",
+        "packageVersion": "2.17.15",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-analytics",
+        "manifest": {
+          "name": "analytics",
+          "type": "category",
+          "commands": [
+            "add",
+            "remove",
+            "push",
+            "update",
+            "console",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "api": [
+      {
+        "packageName": "amplify-category-api",
+        "packageVersion": "2.23.8",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-api",
+        "manifest": {
+          "name": "api",
+          "type": "category",
+          "commands": [
+            "add-graphql-datasource",
+            "add",
+            "console",
+            "gql-compile",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "auth": [
+      {
+        "packageName": "amplify-category-auth",
+        "packageVersion": "2.19.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth",
+        "manifest": {
+          "name": "auth",
+          "type": "category",
+          "commands": [
+            "add",
+            "console",
+            "enable",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "eventHandlers": []
+        }
+      }
+    ],
+    "function": [
+      {
+        "packageName": "amplify-category-function",
+        "packageVersion": "2.25.0",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-function",
+        "manifest": {
+          "name": "function",
+          "type": "category",
+          "commands": [
+            "add",
+            "build",
+            "console",
+            "invoke",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "hosting": [
+      {
+        "packageName": "amplify-category-hosting",
+        "packageVersion": "2.4.2",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-hosting",
+        "manifest": {
+          "name": "hosting",
+          "displayName": "Amazon CloudFront and S3",
+          "type": "category",
+          "commands": [
+            "add",
+            "configure",
+            "console",
+            "push",
+            "remove",
+            "help"
+          ],
+          "commandAliases": {
+            "enable": "add",
+            "update": "configure"
+          },
+          "services": [
+            "S3AndCloudFront"
+          ]
+        }
+      },
+      {
+        "packageName": "amplify-console-hosting",
+        "packageVersion": "1.4.4",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-console-hosting",
+        "manifest": {
+          "name": "hosting",
+          "type": "category",
+          "commands": [
+            "add",
+            "configure",
+            "remove",
+            "help",
+            "serve"
+          ],
+          "commandAliases": {
+            "console": "serve",
+            "configure": "update"
+          },
+          "displayName": "Hosting with Amplify Console (Managed hosting with custom domains, Continuous deployment)",
+          "services": [
+            "amplifyhosting"
+          ]
+        }
+      }
+    ],
+    "interactions": [
+      {
+        "packageName": "amplify-category-interactions",
+        "packageVersion": "2.4.15",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-interactions",
+        "manifest": {
+          "name": "interactions",
+          "aliases": [
+            "interaction"
+          ],
+          "type": "category",
+          "commands": [
+            "add",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "notifications": [
+      {
+        "packageName": "amplify-category-notifications",
+        "packageVersion": "2.15.24",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-notifications",
+        "manifest": {
+          "name": "notifications",
+          "aliases": [
+            "notification"
+          ],
+          "type": "category",
+          "commands": [
+            "add",
+            "configure",
+            "console",
+            "remove",
+            "status",
+            "help"
+          ],
+          "commandAliases": {
+            "enable": "add",
+            "update": "configure",
+            "disable": "remove",
+            "delete": "remove",
+            "list": "status",
+            "ls": "status"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "predictions": [
+      {
+        "packageName": "amplify-category-predictions",
+        "packageVersion": "2.4.17",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-predictions",
+        "manifest": {
+          "name": "predictions",
+          "aliases": [
+            "Predictions"
+          ],
+          "type": "category",
+          "commands": [
+            "add",
+            "console",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "storage": [
+      {
+        "packageName": "amplify-category-storage",
+        "packageVersion": "2.7.8",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-storage",
+        "manifest": {
+          "name": "storage",
+          "type": "category",
+          "commands": [
+            "add",
+            "console",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "xr": [
+      {
+        "packageName": "amplify-category-xr",
+        "packageVersion": "2.4.15",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-xr",
+        "manifest": {
+          "name": "xr",
+          "aliases": [
+            "XR"
+          ],
+          "type": "category",
+          "commands": [
+            "add",
+            "console",
+            "push",
+            "remove",
+            "update",
+            "help"
+          ],
+          "commandAliases": {
+            "configure": "update"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "codegen": [
+      {
+        "packageName": "amplify-codegen",
+        "packageVersion": "2.15.18",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-codegen",
+        "manifest": {
+          "name": "codegen",
+          "type": "util",
+          "commands": [
+            "add",
+            "codegen",
+            "configure",
+            "remove",
+            "statements",
+            "types",
+            "models"
+          ],
+          "commandAliases": {
+            "update": "configure",
+            "statement": "statements",
+            "model": "models"
+          },
+          "eventHandlers": []
+        }
+      }
+    ],
+    "functionRuntime": [
+      {
+        "packageName": "amplify-dotnet-function-runtime-provider",
+        "packageVersion": "1.2.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-dotnet-function-runtime-provider",
+        "manifest": {
+          "name": "functionRuntime",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionRuntime": {
+            "pluginId": "amplify-dotnet-function-runtime-provider",
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ]
+            },
+            "runtimes": [
+              {
+                "name": ".NET Core 3.1",
+                "value": "dotnetcore3.1"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-go-function-runtime-provider",
+        "packageVersion": "1.2.3",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-go-function-runtime-provider",
+        "manifest": {
+          "name": "functionRuntime",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionRuntime": {
+            "pluginId": "amplify-go-function-runtime-provider",
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ]
+            },
+            "runtimes": [
+              {
+                "name": "Go",
+                "value": "go"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-java-function-runtime-provider",
+        "packageVersion": "1.2.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-java-function-runtime-provider",
+        "manifest": {
+          "name": "functionRuntime",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionRuntime": {
+            "pluginId": "amplify-java-function-runtime-provider",
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ]
+            },
+            "runtimes": [
+              {
+                "name": "Java",
+                "value": "java"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-nodejs-function-runtime-provider",
+        "packageVersion": "1.1.5",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-nodejs-function-runtime-provider",
+        "manifest": {
+          "name": "functionRuntime",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionRuntime": {
+            "pluginId": "amplify-nodejs-function-runtime-provider",
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda",
+                "LambdaLayer"
+              ]
+            },
+            "runtimes": [
+              {
+                "name": "NodeJS",
+                "value": "nodejs"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-python-function-runtime-provider",
+        "packageVersion": "1.2.3",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-python-function-runtime-provider",
+        "manifest": {
+          "name": "functionRuntime",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionRuntime": {
+            "pluginId": "amplify-python-function-runtime-provider",
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda",
+                "LambdaLayer"
+              ]
+            },
+            "runtimes": [
+              {
+                "name": "Python",
+                "value": "python"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "functionTemplate": [
+      {
+        "packageName": "amplify-dotnet-function-template-provider",
+        "packageVersion": "1.3.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-dotnet-function-template-provider",
+        "manifest": {
+          "name": "functionTemplate",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionTemplate": {
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ],
+              "runtime": [
+                "dotnetcore3.1"
+              ]
+            },
+            "templates": [
+              {
+                "name": "Hello World",
+                "value": "hello-world"
+              },
+              {
+                "name": "Serverless",
+                "value": "serverless"
+              },
+              {
+                "name": "Trigger (DynamoDb, Kinesis)",
+                "value": "trigger"
+              },
+              {
+                "name": "CRUD function for DynamoDB (Integration with API Gateway)",
+                "value": "crud"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-go-function-template-provider",
+        "packageVersion": "1.2.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-go-function-template-provider",
+        "manifest": {
+          "name": "functionTemplate",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionTemplate": {
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ],
+              "runtime": "go1.x"
+            },
+            "templates": [
+              {
+                "name": "Hello World",
+                "value": "hello-world"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-java-function-template-provider",
+        "packageVersion": "1.4.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-java-function-template-provider",
+        "manifest": {
+          "name": "functionTemplate",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionTemplate": {
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ],
+              "runtime": "java"
+            },
+            "templates": [
+              {
+                "name": "Hello World",
+                "value": "hello-world"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-nodejs-function-template-provider",
+        "packageVersion": "1.4.0",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-nodejs-function-template-provider",
+        "manifest": {
+          "name": "functionTemplate",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionTemplate": {
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ],
+              "runtime": "nodejs"
+            },
+            "templates": [
+              {
+                "name": "Hello World",
+                "value": "hello-world"
+              },
+              {
+                "name": "CRUD function for DynamoDB (Integration with API Gateway)",
+                "value": "crud"
+              },
+              {
+                "name": "Serverless ExpressJS function (Integration with API Gateway)",
+                "value": "serverless"
+              },
+              {
+                "name": "Lambda trigger",
+                "value": "trigger"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "packageName": "amplify-python-function-template-provider",
+        "packageVersion": "1.2.1",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-python-function-template-provider",
+        "manifest": {
+          "name": "functionTemplate",
+          "type": "util",
+          "commands": [],
+          "eventHandlers": [],
+          "functionTemplate": {
+            "conditions": {
+              "provider": "awscloudformation",
+              "services": [
+                "Lambda"
+              ],
+              "runtime": "python"
+            },
+            "templates": [
+              {
+                "name": "Hello World",
+                "value": "hello-world"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "android": [
+      {
+        "packageName": "amplify-frontend-android",
+        "packageVersion": "2.13.4",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-android",
+        "manifest": {
+          "name": "android",
+          "type": "frontend",
+          "commands": [
+            "help"
+          ],
+          "eventHandlers": []
+        }
+      }
+    ],
+    "ios": [
+      {
+        "packageName": "amplify-frontend-ios",
+        "packageVersion": "2.13.8",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-ios",
+        "manifest": {
+          "name": "ios",
+          "type": "frontend",
+          "commands": [
+            "help"
+          ],
+          "eventHandlers": []
+        }
+      }
+    ],
+    "javascript": [
+      {
+        "packageName": "amplify-frontend-javascript",
+        "packageVersion": "2.16.3",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript",
+        "manifest": {
+          "name": "javascript",
+          "aliases": [
+            "js"
+          ],
+          "type": "frontend",
+          "commands": [
+            "help"
+          ],
+          "eventHandlers": []
+        }
+      }
+    ],
+    "awscloudformation": [
+      {
+        "packageName": "amplify-provider-awscloudformation",
+        "packageVersion": "4.26.2",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-provider-awscloudformation",
+        "manifest": {
+          "name": "awscloudformation",
+          "aliases": [
+            "awscfn",
+            "aws"
+          ],
+          "type": "provider",
+          "commands": [
+            "configure",
+            "console",
+            "reset-cache",
+            "setupNewUser",
+            "help"
+          ],
+          "commandAliases": {
+            "resetCache": "reset-cache",
+            "setup-new-user": "setupNewUser",
+            "newUser": "setupNewUser",
+            "new-user": "setupNewUser"
+          }
+        }
+      }
+    ],
+    "mock": [
+      {
+        "packageName": "amplify-util-mock",
+        "packageVersion": "3.24.10",
+        "packageLocation": "/home/odyssey1/.nvm/versions/node/v12.18.3/lib/node_modules/@aws-amplify/cli/node_modules/amplify-util-mock",
+        "manifest": {
+          "name": "mock",
+          "type": "util",
+          "commands": [
+            "api",
+            "function",
+            "mock",
+            "storage",
+            "help"
+          ],
+          "eventHandlers": []
+        }
+      }
+    ]
+  },
+  "excluded": {}
+}

@@ -1,0 +1,42 @@
+{
+  "api": {
+    "StripeTestLambda": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "ionicstripetestapp30b14588",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
+  "auth": {
+    "ionicstripetestapp7b56a1af": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "function": {
+    "ionicstripetestapp30b14588": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ionicstripetestapp7b56a1af",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ionicstripetestapp-dev-30425-authRole",
+      "UnauthRoleArn": "arn:aws:iam::642216852076:role/amplify-ionicstripetestapp-dev-30425-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::642216852076:role/amplify-ionicstripetestapp-dev-30425-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-ionicstripetestapp-dev-30425-deployment",
+      "UnauthRoleName": "amplify-ionicstripetestapp-dev-30425-unauthRole",
+      "StackName": "amplify-ionicstripetestapp-dev-30425",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:642216852076:stack/amplify-ionicstripetestapp-dev-30425/b93397a0-fb6b-11ea-9c37-0a87e55ed34e",
+      "AmplifyAppId": "d27ype4buadzyi"
+    }
+  },
+  "api": {
+    "StripeTestLambda": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "ionicstripetestapp30b14588",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-ionicstripetestapp-dev-30425-deployment/amplify-cfn-templates/api/StripeTestLambda-cloudformation-template.json",
+        "logicalId": "apiStripeTestLambda"
+      },
+      "lastPushTimeStamp": "2020-09-21T04:58:04.040Z",
+      "output": {
+        "ApiName": "StripeTestLambda",
+        "RootUrl": "https://8bg6e3modk.execute-api.ap-northeast-1.amazonaws.com/dev",
+        "ApiId": "8bg6e3modk"
+      },
+      "lastPushDirHash": "EAD9qxOZ7OQzCJ3uakukGgiC3WY="
+    }
+  },
+  "auth": {
+    "ionicstripetestapp7b56a1af": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-ionicstripetestapp-dev-30425-deployment/amplify-cfn-templates/auth/ionicstripetestapp7b56a1af-cloudformation-template.yml",
+        "logicalId": "authionicstripetestapp7b56a1af"
+      },
+      "lastPushTimeStamp": "2020-09-21T04:58:04.043Z",
+      "output": {
+        "AppClientSecret": "17lt97eumhjfkc6m10d9obqc3qfmtph97vcb8clo1p67heaojjr",
+        "UserPoolId": "ap-northeast-1_Wux4GZIQF",
+        "AppClientIDWeb": "5pohn6123nvh47cjmuivqt9864",
+        "AppClientID": "6i2369c0ofuelvj645ki0mvs9h",
+        "IdentityPoolId": "ap-northeast-1:9c3e080e-e0c9-46fc-b73d-ec23ff5e337d",
+        "IdentityPoolName": "ionicstripetestapp7b56a1af_identitypool_7b56a1af__dev",
+        "UserPoolName": "ionicstripetestapp7b56a1af_userpool_7b56a1af"
+      },
+      "lastPushDirHash": "BGB6vNxm4wFvfSYf1bYjoJSvSlM="
+    }
+  },
+  "function": {
+    "ionicstripetestapp30b14588": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ionicstripetestapp7b56a1af",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2020-09-21T04:57:00.719Z",
+      "lastPackageTimeStamp": "2020-09-21T04:57:01.576Z",
+      "distZipFilename": "ionicstripetestapp30b14588-66396a6a76486e75734b-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-ionicstripetestapp-dev-30425-deployment/amplify-cfn-templates/function/ionicstripetestapp30b14588-cloudformation-template.json",
+        "logicalId": "functionionicstripetestapp30b14588"
+      },
+      "lastPushTimeStamp": "2020-09-21T04:58:04.052Z",
+      "output": {
+        "Region": "ap-northeast-1",
+        "Arn": "arn:aws:lambda:ap-northeast-1:642216852076:function:StripeTestLambda-dev",
+        "Name": "StripeTestLambda-dev",
+        "LambdaExecutionRole": "ionicstripetestappLambdaRolef605ecf7-dev"
+      },
+      "lastPushDirHash": "fofPlr7AoVohIIaba4v64Y56tps="
+    }
+  }
+}

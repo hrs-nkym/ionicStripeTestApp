@@ -1,0 +1,42 @@
+{
+    "paths": [
+        {
+            "name": "/env",
+            "lambdaFunction": "ionicstripetestapp30b14588",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/env"
+        }
+    ],
+    "resourceName": "StripeTestLambda",
+    "apiName": "StripeTestLambda",
+    "functionArns": [
+        {
+            "lambdaFunction": "ionicstripetestapp30b14588"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-ionicstripetestapp-dev-30425-authRole",
+        "unAuthRoleName": "amplify-ionicstripetestapp-dev-30425-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ionicstripetestapp30b14588",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
