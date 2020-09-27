@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AmplifyService } from 'aws-amplify-angular';
@@ -12,9 +12,12 @@ import { loadStripe } from '@stripe/stripe-js';
 })
 export class HomePage {
 
-  apiGateway = 'https://0tmjrphch5.execute-api.ap-northeast-1.amazonaws.com/stripeTestApiStage';
-  card = null;
+  payApiGateway = 'https://0tmjrphch5.execute-api.ap-northeast-1.amazonaws.com/stripeTestApiStage';
+  subApiGateway = 'https://i3y26vlp3i.execute-api.ap-northeast-1.amazonaws.com/sub';
+
   httpOptions = null;
+  email = 'local@leafhub.me';
+  price = 'price_1HVWvZAaZtYZzHLQEbAG9oNQ';
 
   PUBLIC_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
   DOMAIN = window.location.hostname;
@@ -60,67 +63,61 @@ export class HomePage {
 
     paymentForm.addEventListener('submit', (event) => {
       event.preventDefault();
-      stripe.createToken(cardElement).then((result) => {
+
+      stripe.createToken(cardElement).then(async (result) => {
         if (result.error) {
           console.log('Error creating payment method.');
           const errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
+          return;
         } else {
-          console.log('Token acquired!');
-          console.log(result.token);
-          console.log(result.token.id);
+          // console.log('Token : ' + result.token.id);
 
-          this.http.post(this.apiGateway, this.httpOptions )
-            .subscribe( async (res) => {
+          const resPaymentMethod = await stripe.createPaymentMethod({
+            type: 'card',
+            card: { token: result.token.id },
+            billing_details: {
+              email: this.email,
+            }
+          });
 
-              const response = JSON.stringify(res);
-              const json = JSON.parse(response);
-              const body = JSON.parse(json.body);
+          if (resPaymentMethod.error) {
+            console.log(resPaymentMethod.error.message);
+          } else {
 
-              console.log('client_secret: ' + body.client_secret);
+            const body = {
+              payment_method: resPaymentMethod.paymentMethod.id,
+              email: this.email,
+              price: this.price
+            };
 
-              stripe.confirmCardPayment(body.client_secret, {
-                payment_method: {
-                  card: { token: result.token.id },
-                  billing_details: {
-                    name: 'leafhub.'
-                  }
+            this.http.post(this.subApiGateway, body)
+              .subscribe((response) => {
+                const res = JSON.stringify(response);
+                const json = JSON.parse(res);
+                // tslint:disable-next-line:no-shadowed-variable
+                const body = JSON.parse(json.body);
+
+                const status = body.status;
+                const client_secret = body.client_secret;
+
+                if (status === 'requires_action') {
+                  stripe.confirmCardPayment(client_secret).then( async (pay) => {
+                    if (pay.error) {
+                      console.log('There was an issue!');
+                      console.log(pay.error);
+                    } else {
+                      console.log('You got the money!');
+                    }
+                  });
+                } else {
+                  console.log('You got the money!');
                 }
-              }).then((paymentIntent) => {
-                console.log('paymentIntent: ' + JSON.stringify(paymentIntent));
-              }).catch((error) => {
-                console.log('error: ' + JSON.stringify(error));
               });
-            });
+          }
         }
       });
     });
-
-
-  }
-
-  async redirectToCheckout() {
-    try {
-      const stripe = await loadStripe(this.PUBLIC_KEY);
-      stripe.redirectToCheckout({
-        mode: 'payment',
-        lineItems: [{price: this.PLAN_ID, quantity: 1}],
-        successUrl: 'https://' + this.DOMAIN ,
-        cancelUrl: 'https://' + this.DOMAIN
-      })
-      .then(this.handleResult);
-    } catch (error) {
-      this.errorHandler(error);
-    }
-  }
-
-  private handleResult(result) {
-    console.log('Result: -> ', result);
-  }
-
-  private errorHandler(err) {
-    console.log('Error: -> ', err);
-    return Promise.reject(err.message || err);
   }
 
   public setAuthorization(token: string = null): void {
