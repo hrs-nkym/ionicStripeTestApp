@@ -5,6 +5,11 @@ import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
 import { loadStripe } from '@stripe/stripe-js';
 
+interface ResJSON {
+    status: string;
+    client_secret: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,10 +23,10 @@ export class HomePage {
   httpOptions = null;
   email = 'local@leafhub.me';
   price = 'price_1HVWvZAaZtYZzHLQEbAG9oNQ';
+  gid = 'gid_local_xxxxxx';
 
   PUBLIC_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
   DOMAIN = window.location.hostname;
-  PLAN_ID = 'price_1HQSFCAaZtYZzHLQg6xUA0V6';
 
   constructor(
     private amplifyService: AmplifyService,
@@ -40,13 +45,37 @@ export class HomePage {
       .set('Authorization', ''),
       body: {}
     };
+    this.stripeInitialize();
   }
 
-  async paymentIntent() {
+  async stripeInitialize() {
 
     const stripe = await loadStripe(this.PUBLIC_KEY);
-    const elements = stripe.elements({});
-    const cardElement = elements.create('card', {});
+    const elements = stripe.elements();
+    const style = {
+      base: {
+        iconColor: '#666ee8',
+        color: '#31325f',
+        fontWeight: '400',
+        fontFamily:
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+        fontSize: '15px',
+        fontSmoothing: 'antialiased',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+        ':-webkit-autofill': {
+          color: '#666ee8',
+        },
+      },
+      invalid: {
+        color: '#e5424d',
+        ':focus': {
+          color: '#31325f',
+        },
+      },
+    };
+    const cardElement = elements.create('card', {style, hidePostalCode: true} );
 
     cardElement.mount('#card-element');
 
@@ -54,8 +83,9 @@ export class HomePage {
       const displayError = document.getElementById('card-errors');
       if (event.error){
         displayError.textContent = event.error.message;
+        displayError.classList.add('visible');
       } else {
-        displayError.textContent = '';
+        displayError.classList.remove('visible');
       }
     });
 
@@ -64,6 +94,7 @@ export class HomePage {
     paymentForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
+      // 1, stripe token
       stripe.createToken(cardElement).then(async (result) => {
         if (result.error) {
           console.log('Error creating payment method.');
@@ -71,8 +102,7 @@ export class HomePage {
           errorElement.textContent = result.error.message;
           return;
         } else {
-          // console.log('Token : ' + result.token.id);
-
+          // 2, payment method
           const resPaymentMethod = await stripe.createPaymentMethod({
             type: 'card',
             card: { token: result.token.id },
@@ -88,29 +118,44 @@ export class HomePage {
             const body = {
               payment_method: resPaymentMethod.paymentMethod.id,
               email: this.email,
-              price: this.price
+              price: this.price,
+              gid: this.gid
             };
 
-            this.http.post(this.subApiGateway, body)
-              .subscribe((response) => {
-                const res = JSON.stringify(response);
-                const json = JSON.parse(res);
+            // 3, call lambda.
+            this.http.post(this.subApiGateway, body, this.httpOptions)
+              .subscribe(async (res) => {
+                const json = JSON.stringify(res);
+                const data = JSON.parse(json);
                 // tslint:disable-next-line:no-shadowed-variable
-                const body = JSON.parse(json.body);
-
+                const body = JSON.parse(data.body);
                 const status = body.status;
                 const client_secret = body.client_secret;
 
-                if (status === 'requires_action') {
-                  stripe.confirmCardPayment(client_secret).then( async (pay) => {
-                    if (pay.error) {
-                      console.log('There was an issue!');
-                      console.log(pay.error);
-                    } else {
-                      console.log('You got the money!');
-                    }
-                  });
+            /*
+                lambda:
+                  4, create customer(email, invoice setting(payment method))
+                  5, create subscription(customer.id, items[{price-id}], latest_invoice.payment_intent)
+                  return:
+                  - status : subscription.latest_invoice.payment_intent.status
+                  - client_secret : subscription.latest_invoice.payment_intent.client_secret
+            */
+
+                if (status === 'requires_action') { //
+                  // 6, confirm card payment.
+                  const { paymentIntent, error } = await stripe.confirmCardPayment(client_secret);
+                  if (error) {
+                    // Handle error here
+                    console.log('There was an issue!');
+                  } else if (paymentIntent && paymentIntent.status) {
+                    // Handle successful payment here
+                    // 7, complate.
+                    // return_url : 'https://example.com/return_success_url'
+                    console.log('You got the money!');
+                  }
                 } else {
+                  // 7, complate.
+                  // return_url : 'https://example.com/return_success_url'
                   console.log('You got the money!');
                 }
               });
