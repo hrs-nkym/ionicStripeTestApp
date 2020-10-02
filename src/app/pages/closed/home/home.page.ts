@@ -24,6 +24,7 @@ export class HomePage {
   email = 'local@leafhub.me';
   price = 'price_1HVWvZAaZtYZzHLQEbAG9oNQ';
   gid = 'gid_local_xxxxxx';
+  name = 'leafhub,local';
 
   PUBLIC_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
   DOMAIN = window.location.hostname;
@@ -119,7 +120,8 @@ export class HomePage {
               payment_method: resPaymentMethod.paymentMethod.id,
               email: this.email,
               price: this.price,
-              gid: this.gid
+              gid: this.gid,
+              name: this.name
             };
 
             // 3, call lambda.
