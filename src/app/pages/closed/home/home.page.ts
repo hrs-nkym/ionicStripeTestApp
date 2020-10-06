@@ -17,15 +17,15 @@ import { PayPlanCancelPage } from '@/app/pay-plan-cancel/pay-plan-cancel.page';
 })
 export class HomePage {
 
-  subApiGateway = 'https://i3y26vlp3i.execute-api.ap-northeast-1.amazonaws.com/sub';
+  subApiGateway = 'https://runivwwps5.execute-api.ap-northeast-1.amazonaws.com/subscription';
 
   httpOptions = null;
   email = 'local@leafhub.me';
-  price = 'price_1HVWvZAaZtYZzHLQEbAG9oNQ';
+  price = 'price_1HPjDaIwodtssiRUflmi6jRb';
   gid = 'gid_local_xxxxxx';
   name = 'leafhub,local';
 
-  PUBLIC_KEY = 'pk_test_JYdiYD82MAZv5rHS6by6mKTn';
+  PUBLIC_KEY = 'pk_test_51HMwm1IwodtssiRUiAReBUUSSXMqnwVFNcmnt3f4qYfO395RepPKWjChbtEHPn0PelhtCl7u9iQwloPwqbRGmvTr00Vqo1nldi';
   DOMAIN = window.location.hostname;
 
   constructor(
