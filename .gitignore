@@ -1,0 +1,6 @@
+/.vscode/
+amplify/*.*
+amplify/.config/
+amplify/backend/
+
+/node_modules/

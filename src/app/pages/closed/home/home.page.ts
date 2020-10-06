@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoadingController, ModalController } from "@ionic/angular";
+import { PayPlanSuccessPage } from "../../../pay-plan-success/pay-plan-success.page";
 
 import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
 import { loadStripe } from '@stripe/stripe-js';
+import { Router } from '@angular/router';
+import { PayPlanCancelPage } from '@/app/pay-plan-cancel/pay-plan-cancel.page';
 
-interface ResJSON {
-    status: string;
-    client_secret: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -30,8 +30,11 @@ export class HomePage {
   DOMAIN = window.location.hostname;
 
   constructor(
+    public loadingController: LoadingController,
+    public modalController: ModalController,
     private amplifyService: AmplifyService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) {
     Auth.currentSession()
       .then((session) => {
@@ -125,6 +128,10 @@ export class HomePage {
             };
 
             // 3, call lambda.
+            const loading = await this.loadingController.create({
+              message: 'Loading...',
+            });
+            await loading.present();
             this.http.post(this.subApiGateway, body, this.httpOptions)
               .subscribe(async (res) => {
                 const json = JSON.stringify(res);
@@ -149,16 +156,22 @@ export class HomePage {
                   if (error) {
                     // Handle error here
                     console.log('There was an issue!');
+                    loading.dismiss();
+                    this.presentModal();
                   } else if (paymentIntent && paymentIntent.status) {
                     // Handle successful payment here
                     // 7, complate.
                     // return_url : 'https://example.com/return_success_url'
                     console.log('You got the money!');
+                    loading.dismiss();
+                    this.presentModal();
                   }
                 } else {
                   // 7, complate.
                   // return_url : 'https://example.com/return_success_url'
                   console.log('You got the money!');
+                  loading.dismiss();
+                  this.presentModal();
                 }
               });
           }
@@ -177,5 +190,17 @@ export class HomePage {
 
   onSignOutButtonClicked() {
     this.amplifyService.auth().signOut();
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: PayPlanSuccessPage,
+    });
+    return await modal.present();
+  }
+
+  cancelClick(page: any) {
+    console.log("caceled!");
+    this.router.navigate(['/pay-plan-cancel'], {queryParams: {hoge: 1}})
   }
 }

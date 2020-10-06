@@ -25,6 +25,14 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./pages/public/auth/auth.module').then( m => m.AuthPageModule)
   },
+  {
+    path: 'pay-plan-cancel',
+    loadChildren: () => import('./pay-plan-cancel/pay-plan-cancel.module').then( m => m.PayPlanCancelPageModule)
+  },
+  {
+    path: 'pay-plan-success',
+    loadChildren: () => import('./pay-plan-success/pay-plan-success.module').then( m => m.PayPlanSuccessPageModule)
+  },
 ];
 
 @NgModule({
