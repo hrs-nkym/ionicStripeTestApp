@@ -17,7 +17,6 @@ import { PayPlanCancelPage } from '@/app/pay-plan-cancel/pay-plan-cancel.page';
 })
 export class HomePage {
 
-  payApiGateway = 'https://0tmjrphch5.execute-api.ap-northeast-1.amazonaws.com/stripeTestApiStage';
   subApiGateway = 'https://i3y26vlp3i.execute-api.ap-northeast-1.amazonaws.com/sub';
 
   httpOptions = null;
