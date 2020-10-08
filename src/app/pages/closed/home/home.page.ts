@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoadingController, ModalController } from "@ionic/angular";
-import { PayPlanSuccessPage } from "../../../pay-plan-success/pay-plan-success.page";
+import { LoadingController, ModalController } from '@ionic/angular';
+import { PayPlanSuccessPage } from '../../../pay-plan-success/pay-plan-success.page';
 
 import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
@@ -199,7 +199,7 @@ export class HomePage {
   }
 
   cancelClick(page: any) {
-    console.log("caceled!");
-    this.router.navigate(['/pay-plan-cancel'], {queryParams: {hoge: 1}})
+    console.log('caceled!');
+    this.router.navigate(['/pay-plan-cancel'], {queryParams: {hoge: 1}});
   }
 }
