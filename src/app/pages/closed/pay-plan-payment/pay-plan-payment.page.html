@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-back-button>戻る</ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      支払い方法
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="icon-only" (click)="onSignOutButtonClicked()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="checkout">
+    <form id="payment-form">
+      <div class="form-row">
+        <label>クレジットカード番号を入力してください</label>
+        <div id="card-element"></div>
+      </div>
+      <div class="price-style">
+        プラン  ¥ /月<br>
+        合計(税込) : ¥ /月
+      </div>
+      <button id="submit" class="payment-button" type="submit">購入する</button>
+    </form>
+    <div id="card-errors" class="element-errors"></div>
+  </div>
+  <div class="notice-style">
+    注意事項 注意事項 注意事項 注意事項 注意事項 
+    注意事項 注意事項 注意事項 注意事項 注意事項 
+    注意事項 注意事項 注意事項 注意事項 注意事項 
+    注意事項 注意事項 注意事項 注意事項 注意事項 
+  </div>
+</ion-content>
+

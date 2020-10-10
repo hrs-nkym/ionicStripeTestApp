@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'pay-plan-success',
     loadChildren: () => import('./pay-plan-success/pay-plan-success.module').then( m => m.PayPlanSuccessPageModule)
   },
+  {
+    path: 'pay-plan-payment',
+    loadChildren: () => import('./pages/closed/pay-plan-payment/pay-plan-payment.module').then( m => m.PayPlanPaymentPageModule)
+  },
 ];
 
 @NgModule({

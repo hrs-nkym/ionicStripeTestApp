@@ -1,8 +1,6 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      支払い方法
-    </ion-title>
+    <ion-title>プランの選択</ion-title>
     <ion-buttons slot="end">
       <ion-button slot="icon-only" (click)="onSignOutButtonClicked()">
         <ion-icon name="log-out"></ion-icon>
@@ -12,30 +10,44 @@
 </ion-header>
 
 <ion-content>
-  <div id="checkout">
-    <form id="payment-form">
-      <div class="form-row">
-        <label>クレジットカード番号を入力してください</label>
-        <div id="card-element"></div>
-      </div>
-      <div class="price-style">
-        プラン  ¥ /月<br>
-        合計(税込) : ¥ /月
-      </div>
-      <button id="submit" class="payment-button" type="submit">購入する</button>
-    </form>
-    <div>代わりにGoogle Playで購入する</div>
-    <div id="card-errors" class="element-errors"></div>
-  </div>
-  <div class="notice-style">
-    注意事項 注意事項 注意事項 注意事項 注意事項 
-    注意事項 注意事項 注意事項 注意事項 注意事項 
-    注意事項 注意事項 注意事項 注意事項 注意事項 
-    注意事項 注意事項 注意事項 注意事項 注意事項 
-  </div>
-  <ion-item  (click)="cancelClick()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        プラン名<br>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      テスト<br>
+      テスト<br>
+      テスト<br>
+      テスト<br>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-slides #sliders [options]="slideConfig">
+    <ion-slide *ngFor="let plan of planItems">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            {{plan.title}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          テスト
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <p>
+    <ion-chip outline color="secondary" (click)="payment()">
+      <ion-label>続ける</ion-label>
+    </ion-chip>
+  </p>
+  <ion-item  (click)="cancel()">
     <ion-label>
-      解約はこちら
+      プランを解約する
     </ion-label>
   </ion-item>
+
 </ion-content>
