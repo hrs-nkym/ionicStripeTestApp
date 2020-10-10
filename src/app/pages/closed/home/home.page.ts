@@ -49,11 +49,12 @@ export class HomePage {
     private router: Router
   ) { }
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
   }
 
   payment(page: any) {
-    this.router.navigate(['/pay-plan-payment'], {queryParams: {hoge: 1}})
+    this.router.navigate(['/pay-plan-payment'], {queryParams: {hoge: 1}});
   }
 
   handleResult(result) {
@@ -64,20 +65,7 @@ export class HomePage {
     this.amplifyService.auth().signOut();
   }
 
-<<<<<<< HEAD
   cancel(page: any) {
-    this.router.navigate(['/pay-plan-cancel'], {queryParams: {hoge: 1}})
-=======
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: PayPlanSuccessPage,
-    });
-    return await modal.present();
-  }
-
-  cancelClick(page: any) {
-    console.log('caceled!');
     this.router.navigate(['/pay-plan-cancel'], {queryParams: {hoge: 1}});
->>>>>>> 2dd8ea0bf4ef487a85c45a6b918b8bec225fc1c8
   }
 }
