@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoadingController, ModalController } from "@ionic/angular";
-import { PayPlanSuccessPage } from "../../../pay-plan-success/pay-plan-success.page";
+import { LoadingController, ModalController } from '@ionic/angular';
+import { PayPlanSuccessPage } from '../../../pay-plan-success/pay-plan-success.page';
 
 import { AmplifyService } from 'aws-amplify-angular';
 import { Auth } from '@aws-amplify/auth';
@@ -165,7 +165,7 @@ export class PayPlanPaymentPage {
                     console.log('You got the money!');
                     loading.dismiss();
                   // this.presentModal().then(() => {
-                    this.router.navigate(['/pay-plan-success'], {queryParams: {hoge: 1}})
+                    this.router.navigate(['/pay-plan-success'], {queryParams: {hoge: 1}});
                     // })
                   }
                 } else {
@@ -174,7 +174,7 @@ export class PayPlanPaymentPage {
                   console.log('You got the money!');
                   loading.dismiss();
                   // this.presentModal().then(() => {
-                  this.router.navigate(['/pay-plan-success'], {queryParams: {hoge: 1}})
+                  this.router.navigate(['/pay-plan-success'], {queryParams: {hoge: 1}});
                   // });
                 }
               });
