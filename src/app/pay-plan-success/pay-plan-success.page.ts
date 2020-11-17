@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pay-plan-success',
@@ -18,6 +18,6 @@ export class PayPlanSuccessPage implements OnInit {
   }
 
   close(){
-    this.router.navigate(['/home'], {queryParams: {hoge: 1}})
+    this.router.navigate(['/home'], {queryParams: {hoge: 1}});
   }
 }

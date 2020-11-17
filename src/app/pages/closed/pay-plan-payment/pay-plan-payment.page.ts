@@ -19,10 +19,10 @@ export class PayPlanPaymentPage {
   subApiGateway = 'https://i3y26vlp3i.execute-api.ap-northeast-1.amazonaws.com/sub';
 
   httpOptions = null;
-  email = 'local@leafhub.me';
+  email = 'hnakayama@leafhub.me';
   // price = 'price_1HPjDaIwodtssiRUflmi6jRb';
   price = 'price_1HXMrEAaZtYZzHLQCgapRX3f';
-  gid = 'gid_local_xxxxxx';
+  gid = '0f9a0974-fafa-45c2-ac59-219a7538d8bd';
   name = 'leafhub,local';
 
   // PUBLIC_KEY = 'pk_test_51HMwm1IwodtssiRUiAReBUUSSXMqnwVFNcmnt3f4qYfO395RepPKWjChbtEHPn0PelhtCl7u9iQwloPwqbRGmvTr00Vqo1nldi';
@@ -38,7 +38,7 @@ export class PayPlanPaymentPage {
   ) {
     Auth.currentSession()
       .then((session) => {
-        this.setAuthorization(session.getIdToken().payload['cognito:username']);
+        this.setAuthorization(session.getIdToken().getJwtToken());
       }).catch((err) => {
         console.log(err);
       });
@@ -188,8 +188,7 @@ export class PayPlanPaymentPage {
     if (!token) {
       return;
     }
-    const bearerToken = `Bearer ${token}`;
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', bearerToken);
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', token);
   }
 
   onSignOutButtonClicked() {
